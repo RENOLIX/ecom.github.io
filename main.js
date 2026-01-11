@@ -1,10 +1,10 @@
 /**
- * Configuration et Connexion à l'API
+ * Configuration : Lien vers ton serveur Render
  */
 const API_URL = "https://ecom-api-0eh4.onrender.com/api";
 
 /**
- * Utilitaire : Formater le prix en Euros (ex: 49.90 €)
+ * Utilitaire : Formater le prix
  */
 const formatPrice = (price) => {
     return new Intl.NumberFormat('fr-FR', { 
@@ -14,17 +14,15 @@ const formatPrice = (price) => {
 };
 
 /**
- * 1. Récupérer les produits depuis le serveur Render
+ * 1. Récupérer les produits depuis l'API
  */
 async function getProducts() {
     try {
         const response = await fetch(`${API_URL}/products`);
-        if (!response.ok) throw new Error("Erreur lors de la récupération");
-        
-        const products = await response.json();
-        return products;
+        if (!response.ok) throw new Error("Erreur serveur");
+        return await response.json();
     } catch (error) {
-        console.error("Erreur API :", error);
+        console.error("Erreur lors du chargement :", error);
         return [];
     }
 }
@@ -33,41 +31,39 @@ async function getProducts() {
  * 2. Afficher les produits dans le HTML
  */
 async function displayProducts() {
-    // On cherche l'endroit où afficher les produits (l'id dans ton HTML)
-    const container = document.getElementById('products-grid');
+    // ON UTILISE L'ID "product-container" QUI EST DANS TON HTML
+    const container = document.getElementById('product-container');
     
-    // Si on n'est pas sur une page qui a la grille de produits, on s'arrête
-    if (!container) return;
-
-    // Affichage d'un message de chargement
-    container.innerHTML = "<p>Chargement des produits en cours...</p>";
-
-    const products = await getProducts();
-
-    // Si le serveur ne renvoie rien
-    if (products.length === 0) {
-        container.innerHTML = "<p>Aucun produit trouvé dans la base de données.</p>";
+    if (!container) {
+        console.error("Le container 'product-container' n'existe pas dans le HTML");
         return;
     }
 
-    // On vide le container avant d'ajouter les produits
-    container.innerHTML = "";
+    container.innerHTML = "<p>Chargement des produits...</p>";
 
-    // On crée le HTML pour chaque produit
+    const products = await getProducts();
+
+    if (products.length === 0) {
+        container.innerHTML = "<p>Aucun produit disponible pour le moment.</p>";
+        return;
+    }
+
+    container.innerHTML = ""; // On vide le message de chargement
+
     products.forEach(product => {
+        // On crée la carte du produit
         const productHTML = `
             <div class="product-card">
                 <div class="product-image">
                     <img src="${product.image}" alt="${product.name}" 
-                         onerror="this.src='https://via.placeholder.com/300x200?text=Image+non+disponible'">
+                         onerror="this.src='https://via.placeholder.com/300x200?text=Image+Indisponible'">
                 </div>
                 <div class="product-info">
                     <span class="category">${product.category || 'Électronique'}</span>
                     <h3>${product.name}</h3>
-                    <p class="description">${product.description || ''}</p>
                     <p class="price">${formatPrice(product.price)}</p>
                     <button class="btn btn-primary" onclick="addToCart(${product.id})">
-                        Ajouter au panier
+                        <i class="ph ph-shopping-cart"></i> Ajouter au panier
                     </button>
                 </div>
             </div>
@@ -77,16 +73,14 @@ async function displayProducts() {
 }
 
 /**
- * 3. Fonction Panier (Optionnel - pour éviter les erreurs au clic)
+ * 3. Gestion du panier (simulation)
  */
-function addToCart(productId) {
-    console.log("Produit ajouté au panier, ID:", productId);
+function addToCart(id) {
+    console.log("Ajout au panier du produit ID :", id);
     alert("Produit ajouté au panier !");
 }
 
 /**
- * 4. Lancer l'affichage dès que la page est chargée
+ * 4. Lancement automatique
  */
-document.addEventListener('DOMContentLoaded', () => {
-    displayProducts();
-});
+document.addEventListener('DOMContentLoaded', displayProducts);
