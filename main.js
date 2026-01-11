@@ -1,14 +1,20 @@
 /**
- * Global Utilities for ElectroPro
+ * Global Utilities & Data Fetching
  */
+const API_URL = "https://ecom-api-0eh4.onrender.com"; // TON URL RENDER
+
 const formatPrice = (price) => {
     return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(price);
 };
 
-// Initial state for simulation (shared logic)
-let demoProducts = [
-    { id: 1, name: "PC UltraPort Pro", price: 1499.99, img: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=400&q=80" },
-    { id: 2, name: "Casque Studio Z1", price: 299.00, img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80" },
-    { id: 3, name: "Moniteur 4K 32\"", price: 599.50, img: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=400&q=80" },
-    { id: 4, name: "Clavier Mécanique RGB", price: 159.00, img: "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&w=400&q=80" }
-];
+// Fonction pour récupérer les produits
+async function getProducts() {
+    try {
+        const response = await fetch(`${API_URL}/products`);
+        const products = await response.json();
+        return products;
+    } catch (error) {
+        console.error("Erreur lors du chargement des produits :", error);
+        return [];
+    }
+}
