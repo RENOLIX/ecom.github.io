@@ -1,7 +1,7 @@
 /**
  * Global Utilities & Data Fetching
  */
-const API_URL = "https://ecom-api-0eh4.onrender.com"; // TON URL RENDER
+const API_URL = "https://ecom-api-0eh4.onrender.com/api"; // TON URL RENDER
 
 const formatPrice = (price) => {
     return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(price);
