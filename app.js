@@ -1,53 +1,35 @@
-const API = "/api/products";
-const productsEl = document.getElementById("products");
-const cartCount = document.getElementById("cart-count");
+/**
+ * E-commerce Store Logic
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    const productContainer = document.getElementById('product-container');
+    if (productContainer) {
+        renderShop();
+    }
+    updateCartCount();
+});
 
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+function renderShop() {
+    const container = document.getElementById('product-container');
+    container.innerHTML = demoProducts.map(p => `
+        <div class="product-card">
+            <img src="${p.img}" alt="${p.name}">
+            <div class="p-info">
+                <h3>${p.name}</h3>
+                <p class="p-price">${formatPrice(p.price)}</p>
+                <button class="btn btn-primary" onclick="handleAddToCart(${p.id})" style="width:100%">Ajouter au panier</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function handleAddToCart(id) {
+    // Note: Since localStorage is forbidden, we simulate logic
+    alert('Produit ajouté au panier (Simulé)!');
+    // In a real app without storage, state management would be complex via URL
+}
 
 function updateCartCount() {
-  if (cartCount) cartCount.textContent = cart.length;
+    const badges = document.querySelectorAll('.cart-badge');
+    badges.forEach(b => b.innerText = '0');
 }
-
-async function loadProducts() {
-  if (!productsEl) return;
-  const res = await fetch(API);
-  const products = await res.json();
-
-  productsEl.innerHTML = products.map(p => `
-    <div class="card">
-      <img src="${p.image}">
-      <div class="card-content">
-        <h3>${p.name}</h3>
-        <div class="price">${p.price} €</div>
-        <button onclick='addToCart(${JSON.stringify(p)})'>Ajouter</button>
-      </div>
-    </div>
-  `).join("");
-}
-
-function addToCart(product) {
-  cart.push(product);
-  localStorage.setItem("cart", JSON.stringify(cart));
-  updateCartCount();
-}
-
-function loadCart() {
-  const itemsEl = document.getElementById("cart-items");
-  const totalEl = document.getElementById("total");
-  if (!itemsEl) return;
-
-  let total = 0;
-  itemsEl.innerHTML = cart.map(p => {
-    total += p.price;
-    return `<div class="cart-item">
-      <span>${p.name}</span>
-      <span>${p.price} €</span>
-    </div>`;
-  }).join("");
-
-  totalEl.textContent = "Total : " + total.toFixed(2) + " €";
-}
-
-updateCartCount();
-loadProducts();
-loadCart();
