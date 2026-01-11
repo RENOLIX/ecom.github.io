@@ -1,38 +1,25 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nova Studio — Boutique</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header>
-      <p>Nova Studio</p>
-      <h1>Collection intemporelle, pensée pour ton quotidien créatif.</h1>
-      <p>
-        Landing auto-générée : chaque produit publié se matérialise ici, sans
-        toucher une ligne de code.
-      </p>
-      <button class="primary-btn" id="cta">Explorer la collection</button>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <title>NOVA — Boutique</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
 
-    <section class="catalogue" id="catalogue"></section>
+<header class="topbar">
+  <h1 class="logo">NOVA</h1>
+  <a href="cart.html" class="cart-link">🛒 Panier (<span id="cart-count">0</span>)</a>
+</header>
 
-    <button class="cart-fab" id="openCart">🛒</button>
+<section class="hero">
+  <h2>Design. Qualité. Attitude.</h2>
+  <p>Une sélection premium pensée pour durer.</p>
+</section>
 
-    <aside class="cart-panel" id="cartPanel">
-      <div class="cart-header">
-        <h2>Mon panier</h2>
-        <button id="closeCart">✕</button>
-      </div>
-      <div class="cart-items" id="cartItems"></div>
-      <div class="cart-footer">
-        <p>Total : <strong id="cartTotal">0 €</strong></p>
-        <button id="checkoutBtn">Passer commande</button>
-      </div>
-    </aside>
+<main class="products" id="products"></main>
 
-    <script src="main.js" type="module"></script>
-  </body>
+<script src="app.js"></script>
+</body>
 </html>
