@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nova Studio — Boutique</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <p>Nova Studio</p>
+      <h1>Collection intemporelle, pensée pour ton quotidien créatif.</h1>
+      <p>
+        Landing auto-générée : chaque produit publié se matérialise ici, sans
+        toucher une ligne de code.
+      </p>
+      <button class="primary-btn" id="cta">Explorer la collection</button>
+    </header>
+
+    <section class="catalogue" id="catalogue"></section>
+
+    <button class="cart-fab" id="openCart">🛒</button>
+
+    <aside class="cart-panel" id="cartPanel">
+      <div class="cart-header">
+        <h2>Mon panier</h2>
+        <button id="closeCart">✕</button>
+      </div>
+      <div class="cart-items" id="cartItems"></div>
+      <div class="cart-footer">
+        <p>Total : <strong id="cartTotal">0 €</strong></p>
+        <button id="checkoutBtn">Passer commande</button>
+      </div>
+    </aside>
+
+    <script src="main.js" type="module"></script>
+  </body>
+</html>

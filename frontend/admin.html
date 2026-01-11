@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nova Studio — Admin</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="admin-wrapper">
+      <h1>Admin produits</h1>
+      <p>Ajoute un produit, il apparaît instantanément sur la landing.</p>
+
+      <form id="productForm">
+        <input type="text" name="name" placeholder="Nom du produit" required />
+        <input type="number" step="0.01" name="price" placeholder="Prix (€)" required />
+        <input type="url" name="image" placeholder="URL de l’image" />
+        <input type="text" name="category" placeholder="Catégorie" />
+        <textarea name="description" rows="3" placeholder="Description"></textarea>
+        <button class="primary-btn" type="submit">Publier</button>
+      </form>
+
+      <section class="catalogue" id="adminList"></section>
+    </div>
+
+    <script src="admin.js" type="module"></script>
+  </body>
+</html>
