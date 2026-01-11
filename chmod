@@ -1,0 +1,7 @@
+#!/bin/bash
+# Script de permission pour l'environnement de développement
+# Utile si vous hébergez sur un serveur Linux
+chmod 644 *.html
+chmod 644 *.css
+chmod 644 *.js
+echo "Permissions mises à jour pour ElectroPro."
