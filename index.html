@@ -1,25 +1,70 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <title>NOVA — Boutique</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectroPro | Accueil</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 <body>
+    <header class="header">
+        <nav class="container">
+            <a href="index.html" class="logo">ELECTRO<span>PRO</span></a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="#products">Boutique</a></li>
+                <li><a href="admin.html">Admin</a></li>
+            </ul>
+            <div class="nav-tools">
+                <a href="cart.html" class="cart-btn">
+                    <i class="ph ph-shopping-cart"></i>
+                    <span class="cart-badge">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
 
-<header class="topbar">
-  <h1 class="logo">NOVA</h1>
-  <a href="cart.html" class="cart-link">🛒 Panier (<span id="cart-count">0</span>)</a>
-</header>
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <h1>L'Excellence Technologique à votre portée.</h1>
+                <p>Découvrez notre nouvelle gamme de produits électroniques haute performance pour les professionnels exigeants.</p>
+                <a href="#products" class="btn btn-primary">Découvrir la collection</a>
+            </div>
+            <div class="hero-img">
+                <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=600&q=80" alt="Workstation">
+            </div>
+        </div>
+    </section>
 
-<section class="hero">
-  <h2>Design. Qualité. Attitude.</h2>
-  <p>Une sélection premium pensée pour durer.</p>
-</section>
+    <main class="container" id="products">
+        <h2 class="section-title">Nos Meilleurs Produits</h2>
+        <div class="product-grid" id="product-container">
+            <!-- Produits chargés via app.js -->
+        </div>
+    </main>
 
-<main class="products" id="products"></main>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3>ELECTROPRO</h3>
+                    <p>Qualité premium pour les professionnels.</p>
+                </div>
+                <div>
+                    <h4>Liens utiles</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="admin.html">Dashboard</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copy">&copy; 2026 ElectroPro. All rights reserved.</div>
+        </div>
+    </footer>
 
-<script src="app.js"></script>
+    <script src="main.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
